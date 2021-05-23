@@ -10,7 +10,7 @@ export const darkCtx = createContext<
 
 export function DarkThemeProvider({ children }: React.PropsWithChildren<{}>) {
   const [dark, setDark] = useState<DarkContext>({
-    dark: false,
+    dark: true,
   });
 
   return (
