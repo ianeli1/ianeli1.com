@@ -10,7 +10,7 @@ export function Default({ children }: DefaultProps) {
   const [{ dark }] = useContext(darkCtx);
   return (
     <main
-      className={`flex flex-col min-h-screen overflow-x-hidden overscroll-y-auto ${
+      className={`flex flex-col min-h-screen overflow-x-hidden overscroll-y-auto transition-colors ${
         dark && "bg-gray-900 text-white"
       }`}
     >
