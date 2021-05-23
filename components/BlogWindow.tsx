@@ -1,7 +1,14 @@
-import { MouseEventHandler, useEffect, useState } from "react";
+import {
+  MouseEventHandler,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { Transition } from "react-transition-group";
 import { BlogViewer } from "./BlogViewer";
 import { PostData } from "../utils/posts";
+import { darkCtx } from "./context/useDarkTheme";
 
 interface BWProps {
   show: boolean;
@@ -18,6 +25,24 @@ const transitionStyles = {
 
 export default function BlogWindow({ show, onClose, id }: BWProps) {
   const [post, setPost] = useState<PostData>();
+
+  const [{ dark }] = useContext(darkCtx);
+
+  const onEsc = useCallback(
+    (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        onClose();
+      }
+    },
+    [onClose]
+  );
+
+  useEffect(() => {
+    document.addEventListener("keydown", onEsc);
+    return () => {
+      document.removeEventListener("keydown", onEsc);
+    };
+  }, [onEsc]);
 
   useEffect(() => {
     id &&
@@ -47,7 +72,9 @@ export default function BlogWindow({ show, onClose, id }: BWProps) {
           onClick={onHide}
         >
           <section
-            className={`absolute overflow-y-auto top-0 bottom-0 right-0 w-4/5 h-full p-2 bg-gray-50 shadow transform duration-700 ${transitionStyles[state][1]}`}
+            className={`absolute overflow-y-auto top-0 bottom-0 right-0 w-4/5 h-full p-2 ${
+              dark ? "bg-gray-900" : "bg-gray-50"
+            } shadow transform duration-700 ${transitionStyles[state][1]}`}
           >
             {post ? (
               <BlogViewer article={post.contentHtml} {...post} />

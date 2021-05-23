@@ -53,10 +53,12 @@ export function Header() {
   return (
     <header
       ref={(e) => (headerRef.current = e ?? undefined)}
-      className={`${
-        open ? "h-40" : "h-16"
-      } text-white bg-black flex items-center fixed w-full justify-between z-20 border-b-2 border-black`}
-      style={{ transition: "height 300ms" }}
+      className={`${open ? "h-40" : "h-16"} 
+      ${dark ? "text-black bg-gray-500" : "text-white bg-black"}
+      flex items-center fixed w-full justify-between z-20 border-b-2 border-black`}
+      style={{
+        transition: "height 300ms, background-color 300ms, color 300ms",
+      }}
     >
       <h1 className="text-5xl">
         <span
@@ -71,11 +73,15 @@ export function Header() {
       <div className="flex-1 flex h-full">
         {links.map(({ text, href }) => (
           <Link key={text} href={href}>
-            <HeaderLink text={text} />
+            <HeaderLink text={text} dark={dark} />
           </Link>
         ))}
       </div>
-      <HeaderLink text={dark ? "🌞" : "🌚"} onClick={toggleDarkTheme} />
+      <HeaderLink
+        dark={dark}
+        text={dark ? "🌞" : "🌚"}
+        onClick={toggleDarkTheme}
+      />
     </header>
   );
 }
@@ -83,13 +89,18 @@ export function Header() {
 interface HLProps {
   text: string;
   onClick?: () => void;
+  dark: boolean;
 }
 
-function HeaderLink({ text, onClick }: HLProps) {
+function HeaderLink({ text, onClick, dark }: HLProps) {
   return (
     <div
       onClick={onClick}
-      className="hover:bg-white hover:text-black w-32 h-full flex items-center justify-center"
+      className={`${
+        dark
+          ? "hover:bg-black hover:text-white"
+          : "hover:bg-white hover:text-black"
+      } w-32 h-full flex items-center justify-center cursor-pointer`}
     >
       {text}
     </div>

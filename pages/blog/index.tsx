@@ -39,7 +39,9 @@ export default function Blog({ postList }: BlogProps) {
             desc: post.desc,
             src: post.image,
             title: post.title,
+            id: post.id,
           }))}
+          onClick={(id) => setPostId(id)}
         />
 
         <Title className="self-start">Timeline</Title>
