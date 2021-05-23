@@ -13,7 +13,7 @@ const transitionStyles = {
   entering: "",
   entered: "",
   exiting: ["opacity-0", "translate-x-full"],
-  exited: ["opacity-0", "translate-x-full"],
+  exited: ["opacity-0 pointer-events-none", "translate-x-full"],
 };
 
 export default function BlogWindow({ show, onClose, id }: BWProps) {
@@ -29,6 +29,7 @@ export default function BlogWindow({ show, onClose, id }: BWProps) {
             return;
           }
           setPost(data);
+          console.log(`got data`, data);
         });
   }, [id]);
 
@@ -39,14 +40,14 @@ export default function BlogWindow({ show, onClose, id }: BWProps) {
   };
 
   return (
-    <Transition unmountOnExit in={show} timeout={300}>
-      {(state) => {
+    <Transition in={show} timeout={1000}>
+      {(state) => (
         <main
-          className={`fixed z-50 left-0 top-0 bottom-0 h-full w-full transition ${transitionStyles[state][0]}`}
+          className={` fixed z-50 left-0 bg-gray-500 bg-opacity-75 top-0 bottom-0 h-full w-full transition duration-700 ${transitionStyles[state][0]}`}
           onClick={onHide}
         >
           <section
-            className={`absolute top-0 bottom-0 right-0 w-4/5 h-full p-2 bg-gray-50 shadow transform ${transitionStyles[state][1]}`}
+            className={`absolute overflow-y-auto top-0 bottom-0 right-0 w-4/5 h-full p-2 bg-gray-50 shadow transform duration-700 ${transitionStyles[state][1]}`}
           >
             {post ? (
               <BlogViewer article={post.contentHtml} {...post} />
@@ -54,8 +55,8 @@ export default function BlogWindow({ show, onClose, id }: BWProps) {
               "loading"
             )}
           </section>
-        </main>;
-      }}
+        </main>
+      )}
     </Transition>
   );
 }
