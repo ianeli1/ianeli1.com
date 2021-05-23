@@ -18,7 +18,9 @@ export function TimelineEntry({
 }: TLEntryProps) {
   return (
     <article
-      className="h-24 mt-2 flex w-full justify-between bg-gray-900 bg-opacity-5 rounded p-1"
+      className={`${
+        onClick && "cursor-pointer"
+      } h-24 mt-2 flex w-full justify-between bg-gray-900 bg-opacity-5 rounded p-1`}
       onClick={onClick}
     >
       <img className="h-full w-24 object-cover rounded" src={image} />
