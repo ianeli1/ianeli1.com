@@ -18,7 +18,11 @@ export function Default({ children }: DefaultProps) {
 
       <main className="flex-grow pt-16">{children}</main>
 
-      <footer className="h-16 flex items-center p-3 justify-between">
+      <footer
+        className={`h-16 flex items-center p-3 justify-between border-t-2 border-black ${
+          dark ? "text-black bg-gray-500" : "text-white bg-black"
+        }`}
+      >
         ian elizondo - 2021
         <a
           href="https://github.com/ianeli1/ianeli1.com"
