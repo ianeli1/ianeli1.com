@@ -1,6 +1,6 @@
 import { MouseEventHandler, useEffect, useState } from "react";
 import { Transition } from "react-transition-group";
-import { BlogViewer, BVProps } from "./BlogViewer";
+import { BlogViewer } from "./BlogViewer";
 import { PostData } from "../utils/posts";
 
 interface BWProps {
