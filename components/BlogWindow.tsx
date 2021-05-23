@@ -59,9 +59,13 @@ export default function BlogWindow({ show, onClose, id }: BWProps) {
   }, [id]);
 
   const onHide: MouseEventHandler<HTMLElement> = (e) => {
-    e.preventDefault();
     e.stopPropagation();
+
     onClose();
+  };
+
+  const onBubble: MouseEventHandler<HTMLElement> = (e) => {
+    e.stopPropagation();
   };
 
   return (
@@ -75,6 +79,7 @@ export default function BlogWindow({ show, onClose, id }: BWProps) {
             className={`absolute overflow-y-auto top-0 bottom-0 right-0 w-4/5 h-full p-2 ${
               dark ? "bg-gray-900" : "bg-gray-50"
             } shadow transform duration-700 ${transitionStyles[state][1]}`}
+            onClick={onBubble}
           >
             {post ? (
               <BlogViewer article={post.contentHtml} {...post} />
