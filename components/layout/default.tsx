@@ -20,7 +20,11 @@ export function Default({ children }: DefaultProps) {
 
       <footer className="h-16 flex items-center p-3 justify-between">
         ian elizondo - 2021
-        <a href="/" className="ml-2">
+        <a
+          href="https://github.com/ianeli1/ianeli1.com"
+          target="_blank"
+          className="ml-2"
+        >
           github
         </a>
         <h1>fsajf</h1>
