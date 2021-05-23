@@ -4,7 +4,7 @@ export interface oneColumnProps{
 }
 
 export function OneColumn({children, minWidth}: oneColumnProps){
-    return <section className="lg:m-auto m-0 w-min p-2" style={{minWidth: minWidth}}>
+    return <section className="lg:m-auto m-0 w-min p-2 flex flex-col items-center" style={{minWidth: minWidth}}>
         {children}
     </section>
 }
