@@ -1,6 +1,7 @@
 import { useCallback, useContext, useEffect, useRef, useState } from "react";
 import { darkCtx } from "./context/useDarkTheme";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 const links = [
   {
@@ -31,6 +32,10 @@ export function Header() {
   const headerRef = useRef<HTMLElement>();
 
   const [{ dark }, setDark] = useContext(darkCtx);
+
+  const { pathname } = useRouter();
+
+  console.log(pathname);
 
   function toggleDarkTheme() {
     setDark((a) => ({ ...a, dark: !a.dark }));
@@ -73,7 +78,11 @@ export function Header() {
       <div className="flex-1 flex h-full">
         {links.map(({ text, href }) => (
           <Link key={text} href={href}>
-            <HeaderLink text={text} dark={dark} />
+            <HeaderLink
+              text={text}
+              selected={`/${pathname.split("/")[1]}` == href}
+              dark={dark}
+            />
           </Link>
         ))}
       </div>
@@ -90,9 +99,10 @@ interface HLProps {
   text: string;
   onClick?: () => void;
   dark: boolean;
+  selected?: boolean;
 }
 
-function HeaderLink({ text, onClick, dark }: HLProps) {
+function HeaderLink({ text, onClick, dark, selected }: HLProps) {
   return (
     <div
       onClick={onClick}
@@ -100,7 +110,11 @@ function HeaderLink({ text, onClick, dark }: HLProps) {
         dark
           ? "hover:bg-black hover:text-white"
           : "hover:bg-white hover:text-black"
-      } w-32 h-full flex items-center justify-center cursor-pointer`}
+      }
+      
+      ${selected ? (dark ? "bg-black text-white" : "bg-white text-black") : ""}
+      
+      w-32 h-full flex items-center justify-center cursor-pointer`}
     >
       {text}
     </div>
