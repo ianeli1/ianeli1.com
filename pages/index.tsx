@@ -1,12 +1,13 @@
 import { darkCtx } from "components/context/useDarkTheme";
 import { Default } from "components/layout/default";
-import { useContext } from "react";
+import SeeThrough from "components/layout/SeeThrough";
+import React, { useContext } from "react";
 
 export default function Home() {
   const [{ dark }] = useContext(darkCtx);
   return (
     <Default>
-      <Page
+      <SeeThrough
         background={
           <img
             className="h-full p-10 absolute right-0 object-cover rotate-45 transform"
@@ -48,7 +49,7 @@ export default function Home() {
             <Entry dark={dark}>*in the making</Entry>
           </section>
         </div>
-      </Page>
+      </SeeThrough>
     </Default>
   );
 }
@@ -67,22 +68,5 @@ function Entry({ children, dark }: EntryProps) {
     >
       {">" + children}
     </div>
-  );
-}
-
-interface PageProps {
-  background: React.ReactNode;
-  children: React.ReactNode;
-}
-
-function Page({ background, children }: PageProps) {
-  return (
-    <section
-      className="flex-1 w-full relative overflow-hidden"
-      style={{ height: "calc(100vh - 8rem)" }}
-    >
-      <div className="absolute w-full h-full">{background}</div>
-      <div className="absolute w-full h-full">{children}</div>
-    </section>
   );
 }
