@@ -1,5 +1,7 @@
 import { useRef, useCallback, useEffect } from "react";
 
+//implement touch events https://developer.mozilla.org/en-US/docs/Web/API/Touch_events
+
 export const ScrollPages: React.FC<{ children: React.ReactNode[] }> = ({
   children,
 }) => {
