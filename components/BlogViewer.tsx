@@ -49,7 +49,11 @@ export function BlogViewer({
             <Avatar image={avatar} />
           </div>
 
-          <div className="m-2 p-3 rounded-md bg-gray-900 bg-opacity-25">
+          <div
+            className={`m-2 p-3 rounded-md ${
+              !dark ? "bg-white bg-opacity-75" : "bg-gray-900 bg-opacity-25"
+            }`}
+          >
             <Title className="text-5xl">{title}</Title>
           </div>
         </header>
