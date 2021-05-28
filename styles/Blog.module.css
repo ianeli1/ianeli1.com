@@ -38,3 +38,17 @@
   border-radius: 0.5rem;
   padding: 0.5rem;
 }
+
+.topImage::after {
+  display: block;
+  position: absolute;
+  top: 0;
+  background-image: linear-gradient(
+    0deg,
+    rgba(17, 24, 39, 0.8001401244091386) 0%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  height: 100%;
+  width: 100%;
+  content: "";
+}

@@ -2,7 +2,6 @@ import React from "react";
 import { Avatar } from "./Avatar";
 import { Title } from "./Title";
 import styles from "../styles/Blog.module.css";
-import { Line } from "./Line";
 
 export interface BVProps {
   title: string;
@@ -17,7 +16,7 @@ export function BlogViewer({ image, title, avatar, article, date }: BVProps) {
   return (
     <div>
       <section className="relative h-96">
-        <div className="w-full h-96 absolute">
+        <div className={"w-full h-96 absolute " + styles.topImage}>
           <img
             src={image}
             className="w-full h-full object-cover border-b-2 border-black"
