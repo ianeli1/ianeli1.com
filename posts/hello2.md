@@ -2,7 +2,7 @@
 title: Hello world2
 date: "2020-01-02"
 author: "Ian Elizondo"
-avatar: "https://cdn.discordapp.com/avatars/524719328826884116/345672eb1faf8bc115840341db61bde5.webp?size=1024"
+avatar: "https://cdn.discordapp.com/attachments/616319929532022796/847658206725668894/1612222001434.png"
 image: "https://cdn.discordapp.com/attachments/616319929532022796/844008650891722762/unknown.png"
 desc: "Description goes here!"
 ---
