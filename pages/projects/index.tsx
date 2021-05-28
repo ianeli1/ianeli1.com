@@ -1,7 +1,7 @@
 import { Default } from "components/layout/default";
+import { Gallery } from "components/layout/Gallery";
+import { GalleryCard } from "components/layout/GalleryCard";
 import { ScrollPages } from "components/layout/ScrollPages";
-import SeeThrough from "components/layout/SeeThrough";
-import { Line } from "components/Line";
 import React, { useMemo } from "react";
 
 export default function Projects() {
@@ -64,80 +64,3 @@ export default function Projects() {
     </Default>
   );
 }
-
-const GalleryLink: React.FC<{
-  name: string;
-  value: string;
-  href?: string;
-}> = ({ name, value, href }) => (
-  <section className="flex">
-    <h2 className="text-2xl font-semibold whitespace-nowrap mr-2">
-      {name + ": "}
-    </h2>
-    {href ? (
-      <a className="text-2xl text-blue-600" href={href} target="_blank">
-        <h2>{value}</h2>
-      </a>
-    ) : (
-      <h2 className="text-2xl">{value}</h2>
-    )}
-  </section>
-);
-
-const GalleryCard: React.FC<{
-  title: string;
-  desc: string;
-  links: {
-    name: string;
-    value: string;
-    href?: string;
-  }[];
-}> = ({ title, desc, links }) => {
-  const links1 = links.slice(0, 3);
-  const links2 = links.slice(3).slice(0, 3);
-  return (
-    <div className="h-full w-full border-l-2 border-black p-8 flex flex-col">
-      <h1 className="text-7xl font-bold">{title}</h1>
-      <Line />
-      <p className="p-8 text-justify">{desc}</p>
-      <div className="flex-1 p-8 flex justify-around">
-        <div className="p-8 flex-1 flex flex-col justify-around">
-          {links1.map((props) => (
-            <GalleryLink {...props} />
-          ))}
-        </div>
-        <Line vertical />
-        <div className="p-8 flex-1 flex flex-col justify-around">
-          {links2.map((props) => (
-            <GalleryLink {...props} />
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-};
-
-const Gallery: React.FC<{ background: string; right?: boolean }> = ({
-  children,
-  background,
-  right,
-}) => (
-  <SeeThrough
-    background={
-      <img
-        src={background}
-        className="h-full w-1/3 object-cover object-left"
-        style={right ? { marginLeft: "66.666667%" } : undefined}
-      />
-    }
-  >
-    <div
-      className="w-2/3 h-full shadow-2xl"
-      style={
-        right ? { marginRight: "33.333333%" } : { marginLeft: "33.333333%" }
-      }
-    >
-      {children}
-    </div>
-  </SeeThrough>
-);
