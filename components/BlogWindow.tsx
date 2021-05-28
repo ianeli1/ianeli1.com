@@ -76,7 +76,7 @@ export default function BlogWindow({ show, onClose, id }: BWProps) {
           onClick={onHide}
         >
           <section
-            className={`absolute overflow-y-auto top-0 bottom-0 right-0 w-4/5 h-full p-2 ${
+            className={`absolute overflow-y-auto top-0 bottom-0 right-0 w-4/5 h-full ${
               dark ? "bg-gray-900" : "bg-gray-50"
             } shadow transform duration-700 ${transitionStyles[state][1]}`}
             onClick={onBubble}

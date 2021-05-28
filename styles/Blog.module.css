@@ -1,0 +1,40 @@
+.title h1 {
+  font-size: 3rem;
+}
+
+.title h2 {
+  font-size: 2.5rem;
+}
+
+.title h3 {
+  font-size: 2rem;
+}
+
+.list ul {
+  padding: 1rem;
+}
+
+.list li::before {
+  content: "•";
+  display: inline;
+}
+
+.list li p {
+  display: inline;
+}
+
+.quote blockquote {
+  padding: 1rem;
+}
+
+.image img {
+  margin: auto;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.code code {
+  background: rgba(22, 22, 22, 0.7);
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+}
