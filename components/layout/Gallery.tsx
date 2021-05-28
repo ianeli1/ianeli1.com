@@ -1,17 +1,21 @@
+import React from "react";
 import SeeThrough from "./SeeThrough";
 
-export const Gallery: React.FC<{ background: string; right?: boolean }> = ({
-  children,
-  background,
-  right,
-}) => (
+export const Gallery: React.FC<{
+  background: string | React.ReactNode;
+  right?: boolean;
+}> = ({ children, background, right }) => (
   <SeeThrough
     background={
-      <img
-        src={background}
-        className="h-full w-1/3 object-cover object-left"
-        style={right ? { marginLeft: "66.666667%" } : undefined}
-      />
+      typeof background == "string" ? (
+        <img
+          src={background}
+          className="h-full w-1/3 object-cover object-left"
+          style={right ? { marginLeft: "66.666667%" } : undefined}
+        />
+      ) : (
+        background
+      )
     }
   >
     <div
