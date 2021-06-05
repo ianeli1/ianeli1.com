@@ -1,10 +1,23 @@
+import { darkCtx } from "components/context/useDarkTheme";
 import { Default } from "components/layout/default";
 import { Gallery } from "components/layout/Gallery";
 import { GalleryCard } from "components/layout/GalleryCard";
 import { ScrollPages } from "components/layout/ScrollPages";
-import React, { useMemo } from "react";
+import React, { useContext, useEffect, useMemo, useState } from "react";
 
-export default function Projects() {
+const githubURL = "https://api.github.com/users/ianeli1/repos";
+
+export async function getServerSideProps() {
+  return {
+    props: {
+      GHProjects: await (await fetch(githubURL)).json(),
+    },
+  };
+}
+
+export const Projects: React.FC<{
+  GHProjects: GitHubProject[];
+}> = ({ GHProjects }) => {
   const pages = useMemo(
     () => [
       <Gallery
@@ -48,11 +61,41 @@ export default function Projects() {
           ]}
         />
       </Gallery>,
-      <Gallery background={""} right>
-        <h1>this is the front2</h1>
+      <Gallery
+        background={
+          "https://cdn.discordapp.com/attachments/616319929532022796/849456877737082940/unknown.png"
+        }
+        right
+      >
+        <GalleryCard
+          title="Discordjs-DIY."
+          desc="Easy to use, do-it-yourself Discord.js mini-framework. Use it for making Discord.JS bots when you're in a hurry. You can get started with only 2 lines! (incluiding the import)!"
+          links={[
+            {
+              name: "Based on",
+              value: "discord.js",
+              href: "https://www.npmjs.com/package/discord.js",
+            },
+            {
+              name: "Repo",
+              value: "Github",
+              href: "https://github.com/ianeli1/discordjs-diy",
+            },
+            {
+              name: "Wiki",
+              value: "GitHub pages",
+              href: "https://ianeli1.github.io/discordjs-diy/",
+            },
+          ]}
+        />
       </Gallery>,
       <Gallery background={""}>
-        <h1>this is the front3</h1>
+        <GalleryCard
+          title="And more!"
+          desc="You can find all the projects I have uploaded to GitHub below."
+        >
+          <GitHubWidget projects={GHProjects} />
+        </GalleryCard>
       </Gallery>,
     ],
     []
@@ -63,4 +106,45 @@ export default function Projects() {
       <ScrollPages>{pages}</ScrollPages>
     </Default>
   );
+};
+
+export default Projects;
+
+interface GitHubProject {
+  name: string;
+  html_url: string;
+  description: string;
+  created_at: string;
+  updated_at: string;
+  homepage: string;
+  language: null | string;
+  languages_url: string; //add a button to see all?
 }
+
+const GitHubWidget: React.FC<{
+  projects: GitHubProject[];
+}> = ({ projects = [] }) => {
+  const [{ dark }] = useContext(darkCtx);
+
+  return (
+    <main className="w-full flex-1  overflow-y-auto overflow-x-hidden p-2 rounded-lg bg-black">
+      {projects.map((project) => (
+        <GHWEntry project={project} />
+      ))}
+    </main>
+  );
+};
+
+const GHWEntry: React.FC<{
+  project: GitHubProject;
+}> = ({ project: { name, description } }) => {
+  return (
+    <section>
+      <div>
+        <h1>{name}</h1>
+        <p>{description}</p>
+      </div>
+      <h1>{">"}</h1>
+    </section>
+  );
+};
