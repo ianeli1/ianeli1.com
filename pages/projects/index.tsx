@@ -3,7 +3,7 @@ import { Default } from "components/layout/default";
 import { Gallery } from "components/layout/Gallery";
 import { GalleryCard } from "components/layout/GalleryCard";
 import { ScrollPages } from "components/layout/ScrollPages";
-import React, { useContext, useEffect, useMemo, useState } from "react";
+import React, { useContext, useMemo } from "react";
 
 const githubURL = "https://api.github.com/users/ianeli1/repos";
 
@@ -125,7 +125,7 @@ const GitHubWidget: React.FC<{
   projects: GitHubProject[];
 }> = ({ projects = [] }) => {
   const [{ dark }] = useContext(darkCtx);
-
+  dark;
   return (
     <main className="w-full flex-1  overflow-y-auto overflow-x-hidden p-2 rounded-lg bg-black">
       {projects.map((project) => (
