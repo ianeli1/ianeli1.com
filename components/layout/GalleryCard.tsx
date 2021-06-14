@@ -1,21 +1,23 @@
 import { Line } from "components/Line";
 
 export const GalleryCard: React.FC<{
-  title: string;
-  desc: string;
+  title?: string;
+  desc?: string;
+  line?: boolean;
   links?: {
     name: string;
     value: string;
     href?: string;
   }[];
-}> = ({ title, desc, links, children }) => {
+}> = ({ title, desc, links, children, line }) => {
   const links1 = links?.slice(0, 3) ?? [];
   const links2 = links?.slice(3).slice(0, 3) ?? [];
   return (
     <div className="h-full w-full border-l-2 border-black p-8 flex flex-col">
-      <h1 className="text-7xl font-bold">{title}</h1>
-      <Line />
-      <p className="p-8 text-justify">{desc}</p>
+      {title && <h1 className="text-7xl font-bold">{title}</h1>}
+      {!line && <Line />}
+      {desc && <p className="p-8 text-justify">{desc}</p>}
+
       <div className="flex-1 p-8 flex justify-around">
         {children ? (
           <>{children}</>
