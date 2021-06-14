@@ -24,14 +24,14 @@ export const GalleryCard: React.FC<{
         ) : (
           <>
             <div className="p-8 flex-1 flex flex-col justify-around">
-              {links1.map((props) => (
-                <GalleryLink {...props} />
+              {links1.map((props, i) => (
+                <GalleryLink key={i} {...props} />
               ))}
             </div>
             <Line vertical />
             <div className="p-8 flex-1 flex flex-col justify-around">
-              {links2.map((props) => (
-                <GalleryLink {...props} />
+              {links2.map((props, i) => (
+                <GalleryLink key={i} {...props} />
               ))}
             </div>
           </>
