@@ -5,7 +5,6 @@ import { Default } from "components/layout/default";
 import { Gallery } from "components/layout/Gallery";
 import { ScrollPages } from "components/layout/ScrollPages";
 import { Title } from "components/Title";
-import Link from "next/link";
 import React, { useContext } from "react";
 import Styles from "../styles/About.module.css";
 
@@ -25,7 +24,7 @@ export default function About() {
       >
         <ScrollPages>
           {[
-            <section className="p-7 flex flex-col h-full">
+            <section className="p-7 flex flex-col h-full" key="1">
               <Title className="text-6xl">Hola, my name is Ian Elizondo!</Title>
               <div className={`text-xl flex-1 m-7 ${Styles.entriesP}`}>
                 <p>
@@ -65,7 +64,7 @@ export default function About() {
                 </p>
               </Highlight>
             </section>,
-            <section className="p-7 flex flex-col h-full">
+            <section className="p-7 flex flex-col h-full" key="2">
               <Title className="text-6xl">Let's get to work!</Title>
               <div className="m-7 flex-1">
                 <Title className="text-4xl">My skills</Title>
@@ -81,8 +80,8 @@ export default function About() {
                     "ExpressJS",
                     "Azure/AWS/GCP",
                     "Python/C++",
-                  ].map((x) => (
-                    <SkillEntry>{x}</SkillEntry>
+                  ].map((x, i) => (
+                    <SkillEntry key={i}>{x}</SkillEntry>
                   ))}
                 </SkillEntries>
               </div>
@@ -120,8 +119,8 @@ interface SkillEntriesProps {
 function SkillEntries({ children }: SkillEntriesProps) {
   return (
     <div>
-      {children.map((c) => (
-        <section>{c}</section>
+      {children.map((c, i) => (
+        <section key={i}>{c}</section>
       ))}
     </div>
   );
