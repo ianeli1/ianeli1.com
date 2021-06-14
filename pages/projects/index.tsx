@@ -24,6 +24,7 @@ export const Projects: React.FC<{
         background={
           "https://camo.githubusercontent.com/8af0f97b258441d5cbfdd15600397677aae00aecfd7c2ea5c1123b14441da994/68747470733a2f2f6d656469612e646973636f72646170702e6e65742f6174746163686d656e74732f3631363331393932393533323032323739362f3737343835393535343236353632383639322f70726f6d6f2e706e67"
         }
+        key={0}
       >
         <GalleryCard
           title="SimpleChat."
@@ -66,6 +67,7 @@ export const Projects: React.FC<{
           "https://cdn.discordapp.com/attachments/616319929532022796/849456877737082940/unknown.png"
         }
         right
+        key={1}
       >
         <GalleryCard
           title="Discordjs-DIY."
@@ -89,7 +91,7 @@ export const Projects: React.FC<{
           ]}
         />
       </Gallery>,
-      <Gallery background={""}>
+      <Gallery background={""} key={2}>
         <GalleryCard
           title="And more!"
           desc="You can find all the projects I have uploaded to GitHub below."
@@ -128,8 +130,8 @@ const GitHubWidget: React.FC<{
   dark;
   return (
     <main className="w-full flex-1  overflow-y-auto overflow-x-hidden p-2 rounded-lg bg-black">
-      {projects.map((project) => (
-        <GHWEntry project={project} />
+      {projects.map((project, i) => (
+        <GHWEntry key={i} project={project} />
       ))}
     </main>
   );
