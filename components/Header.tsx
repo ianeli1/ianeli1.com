@@ -77,7 +77,7 @@ export function Header() {
       </h1>
       <div className="flex-1 flex h-full">
         {links.map(({ text, href }) => (
-          <Link key={text} href={href}>
+          <Link key={text} href={href} passHref>
             <HeaderLink
               text={text}
               selected={`/${pathname.split("/")[1]}` == href}
@@ -100,23 +100,26 @@ interface HLProps {
   onClick?: () => void;
   dark: boolean;
   selected?: boolean;
+  href?: string;
 }
 
-function HeaderLink({ text, onClick, dark, selected }: HLProps) {
+function HeaderLink({ href, text, onClick, dark, selected }: HLProps) {
   return (
-    <div
-      onClick={onClick}
-      className={`${
-        dark
-          ? "hover:bg-black hover:text-white"
-          : "hover:bg-white hover:text-black"
-      }
+    <a href={href} className="h-full">
+      <div
+        onClick={onClick}
+        className={`${
+          dark
+            ? "hover:bg-black hover:text-white"
+            : "hover:bg-white hover:text-black"
+        }
       
       ${selected ? (dark ? "bg-black text-white" : "bg-white text-black") : ""}
       
       w-32 h-full flex items-center justify-center cursor-pointer`}
-    >
-      {text}
-    </div>
+      >
+        {text}
+      </div>
+    </a>
   );
 }
