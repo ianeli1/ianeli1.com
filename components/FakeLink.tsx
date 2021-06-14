@@ -24,8 +24,8 @@ export default function FakeLink({
       </a>
     </Link>
   ) : (
-    <p className={classes} onClick={onClick}>
+    <a className={classes} onClick={onClick}>
       {children}
-    </p>
+    </a>
   );
 }
