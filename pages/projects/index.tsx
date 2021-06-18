@@ -129,7 +129,11 @@ const GitHubWidget: React.FC<{
   const [{ dark }] = useContext(darkCtx);
   dark;
   return (
-    <main className="w-full flex-1  overflow-y-auto overflow-x-hidden p-2 rounded-lg bg-black">
+    <main
+      className={`w-full flex-1  overflow-y-auto overflow-x-hidden p-2 rounded-lg ${
+        dark ? "bg-black" : "bg-gray-100"
+      }`}
+    >
       {projects.map((project, i) => (
         <GHWEntry key={i} project={project} />
       ))}
