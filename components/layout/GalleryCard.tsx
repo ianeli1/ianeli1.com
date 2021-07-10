@@ -18,7 +18,7 @@ export const GalleryCard: React.FC<{
       {!line && <Line />}
       {desc && <p className="p-8 text-justify">{desc}</p>}
 
-      <div className="flex-1 p-8 flex justify-around">
+      <div className="flex-1 p-8 flex justify-around overflow-hidden">
         {children ? (
           <>{children}</>
         ) : (
