@@ -1,9 +1,17 @@
+import { Accordion } from "components/Accordion";
 import { darkCtx } from "components/context/useDarkTheme";
 import { Default } from "components/layout/default";
 import { Gallery } from "components/layout/Gallery";
 import { GalleryCard } from "components/layout/GalleryCard";
 import { ScrollPages } from "components/layout/ScrollPages";
-import React, { useContext, useMemo } from "react";
+import React, {
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 
 const githubURL = "https://api.github.com/users/ianeli1/repos";
 
@@ -96,7 +104,13 @@ export const Projects: React.FC<{
           title="And more!"
           desc="You can find all the projects I have uploaded to GitHub below."
         >
-          <GitHubWidget projects={GHProjects} />
+          <Accordion
+            entries={GHProjects.map(({ name, description }) => ({
+              title: name,
+              subtitle: description,
+              children: "Hello",
+            }))}
+          />
         </GalleryCard>
       </Gallery>,
     ],
@@ -111,46 +125,3 @@ export const Projects: React.FC<{
 };
 
 export default Projects;
-
-interface GitHubProject {
-  name: string;
-  html_url: string;
-  description: string;
-  created_at: string;
-  updated_at: string;
-  homepage: string;
-  language: null | string;
-  languages_url: string; //add a button to see all?
-}
-
-const GitHubWidget: React.FC<{
-  projects: GitHubProject[];
-}> = ({ projects = [] }) => {
-  const [{ dark }] = useContext(darkCtx);
-  dark;
-  return (
-    <main
-      className={`w-full flex-1  overflow-y-auto overflow-x-hidden p-2 rounded-lg ${
-        dark ? "bg-black" : "bg-gray-100"
-      }`}
-    >
-      {projects.map((project, i) => (
-        <GHWEntry key={i} project={project} />
-      ))}
-    </main>
-  );
-};
-
-const GHWEntry: React.FC<{
-  project: GitHubProject;
-}> = ({ project: { name, description } }) => {
-  return (
-    <section>
-      <div>
-        <h1>{name}</h1>
-        <p>{description}</p>
-      </div>
-      <h1>{">"}</h1>
-    </section>
-  );
-};
