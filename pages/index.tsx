@@ -15,13 +15,14 @@ export default function Home() {
       <SeeThrough
         background={
           <img
-            className="h-full p-10 absolute right-0 object-cover rotate-45 transform z-10"
+            className="h-full p-10 absolute right-0 object-cover rotate-45 transform"
             src="./signature.svg"
             style={{
               filter: !dark
                 ? "invert(0%) sepia(0%) saturate(0%) hue-rotate(21deg) brightness(100%) contrast(103%)"
                 : "invert(100%) sepia(100%) saturate(0%) hue-rotate(96deg) brightness(105%) contrast(104%)",
               top: "-10%",
+              zIndex: 1,
             }}
           />
         }
@@ -39,7 +40,7 @@ export default function Home() {
             <h1 className="text-8xl">elizondo</h1>
           </div>
         </div>
-        <div className="flex absolute bottom-10 right-20 z-20">
+        <div className="flex absolute bottom-10 right-20 z-10">
           <h1 className="mt-5 font-extrabold text-6xl font-serif ">
             {"() => "}
           </h1>
