@@ -1,3 +1,4 @@
+import { useBreakpoints } from "components/hooks/useBreakpoints";
 import {
   useRef,
   useCallback,
@@ -19,6 +20,8 @@ export const ScrollPages: React.FC<{ children: React.ReactNode[] }> = ({
 }) => {
   const [enable, setEnable] = useState(true);
 
+  const { isLg } = useBreakpoints();
+
   const mainRef = useRef<HTMLElement>();
   const pagesRef = useRef<HTMLDivElement[]>([]);
   const counter = useRef(0);
@@ -39,21 +42,23 @@ export const ScrollPages: React.FC<{ children: React.ReactNode[] }> = ({
   );
   useEffect(() => {
     const { current } = mainRef;
-    current?.addEventListener("wheel", scrollEffect);
-    return () => current?.removeEventListener("wheel", scrollEffect);
-  }, [mainRef.current, enable]);
+    if (isLg) {
+      current?.addEventListener("wheel", scrollEffect);
+      return () => current?.removeEventListener("wheel", scrollEffect);
+    }
+    return;
+  }, [mainRef.current, enable, isLg]);
 
   return (
     <main
-      className="h-full overflow-hidden"
-      style={{ height: "calc(100vh - 8rem)" }}
+      className={`h-full ${isLg ? "overflow-y-hidden" : "overflow-y-auto"}`}
       ref={(r) => r && (mainRef.current = r)}
     >
       <EnableScrollCtx.Provider value={[enable, setEnable]}>
         {children.map((node, i) => (
           <div
             key={i}
-            className="h-full"
+            className={`${isLg ? "h-full" : "h-auto"}`}
             ref={(r) => r && (pagesRef.current[i] = r)}
           >
             {node}
