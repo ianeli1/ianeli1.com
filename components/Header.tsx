@@ -2,6 +2,8 @@ import { useCallback, useContext, useEffect, useRef, useState } from "react";
 import { darkCtx } from "./context/useDarkTheme";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useBreakpoints } from "./hooks/useBreakpoints";
+import { FullScreenSelector } from "./FullScreenSelector";
 
 const links = [
   {
@@ -33,7 +35,7 @@ export function Header() {
 
   const [{ dark }, setDark] = useContext(darkCtx);
 
-  const { pathname } = useRouter();
+  const { pathname, push } = useRouter();
 
   console.log(pathname);
 
@@ -46,52 +48,84 @@ export function Header() {
   }, [setOpen]);
   const onMouseLeave = useCallback(() => setOpen(false), [setOpen]);
 
+  const { isLg } = useBreakpoints();
+
   useEffect(() => {
-    headerRef.current?.addEventListener("mouseenter", onMouseEnter);
-    headerRef.current?.addEventListener("mouseleave", onMouseLeave);
-    return () => {
-      headerRef.current?.removeEventListener("mouseenter", onMouseEnter);
-      headerRef.current?.removeEventListener("mouseleave", onMouseLeave);
-    };
+    if (isLg) {
+      headerRef.current?.addEventListener("mouseenter", onMouseEnter);
+      headerRef.current?.addEventListener("mouseleave", onMouseLeave);
+      return () => {
+        headerRef.current?.removeEventListener("mouseenter", onMouseEnter);
+        headerRef.current?.removeEventListener("mouseleave", onMouseLeave);
+      };
+    }
   }, [headerRef.current]);
 
   return (
-    <header
-      ref={(e) => (headerRef.current = e ?? undefined)}
-      className={`${open ? "h-40" : "h-16"} 
+    <>
+      <header
+        ref={(e) => (headerRef.current = e ?? undefined)}
+        className={`${isLg && open ? "h-40" : "h-16"} 
       ${dark ? "text-black bg-gray-500" : "text-white bg-black"}
-      flex items-center fixed w-full justify-between z-20 border-b-2 border-black`}
-      style={{
-        transition: "height 300ms, background-color 300ms, color 300ms",
-      }}
-    >
-      <h1 className="text-5xl">
-        <span
-          className={`font-bold m-2 inline-block transition-transform transform ${
-            open ? " rotate-90 " : undefined
-          }`}
-        >
-          {">"}
-        </span>
-        ian★
-      </h1>
-      <div className="flex-1 flex h-full">
-        {links.map(({ text, href }) => (
-          <Link key={text} href={href} passHref>
-            <HeaderLink
-              text={text}
-              selected={`/${pathname.split("/")[1]}` == href}
-              dark={dark}
-            />
-          </Link>
-        ))}
-      </div>
-      <HeaderLink
-        dark={dark}
-        text={dark ? "🌞" : "🌚"}
-        onClick={toggleDarkTheme}
+      flex flex-col items-center fixed w-full justify-between z-20 border-b-2 border-black`}
+        style={{
+          transition: "height 300ms, background-color 300ms, color 300ms",
+        }}
+      >
+        <div className="flex items-center h-full w-full">
+          {!isLg && ( //this > svg, lol
+            <div
+              className="flex flex-col justify-evenly h-5/6 p-2 m-1 mr-2 bg-gray-900 rounded cursor-pointer"
+              onClick={() => setOpen(true)}
+              style={{ aspectRatio: "1/1" }}
+            >
+              <div className="border-2 rounded" />
+              <div className="border-2 rounded" />
+              <div className="border-2 rounded" />
+            </div>
+          )}
+          <h1 className="text-5xl">
+            {isLg && (
+              <span
+                className={`font-bold m-2 inline-block transition-transform transform ${
+                  isLg && open ? " rotate-90 " : undefined
+                }`}
+              >
+                {">"}
+              </span>
+            )}
+            ian★
+          </h1>
+          {isLg && (
+            <div className="flex h-full">
+              {links.map(({ text, href }) => (
+                <Link key={text} href={href} passHref>
+                  <HeaderLink
+                    text={text}
+                    selected={`/${pathname.split("/")[1]}` == href}
+                    dark={dark}
+                  />
+                </Link>
+              ))}
+            </div>
+          )}
+          <div className="flex-1" />
+          <HeaderLink
+            dark={dark}
+            text={dark ? "🌞" : "🌚"}
+            onClick={toggleDarkTheme}
+          />
+        </div>
+      </header>
+      <FullScreenSelector
+        open={!isLg && open}
+        onClose={() => setOpen(false)}
+        options={links.map(({ text, href }) => ({
+          onClick: () => push(href),
+          text,
+        }))}
       />
-    </header>
+    </>
   );
 }
 
