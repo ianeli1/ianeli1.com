@@ -59,6 +59,7 @@ export function Header() {
         headerRef.current?.removeEventListener("mouseleave", onMouseLeave);
       };
     }
+    return;
   }, [headerRef.current]);
 
   return (
