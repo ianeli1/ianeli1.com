@@ -1,17 +1,9 @@
 import { Accordion } from "components/Accordion";
-import { darkCtx } from "components/context/useDarkTheme";
 import { Default } from "components/layout/default";
 import { Gallery } from "components/layout/Gallery";
 import { GalleryCard } from "components/layout/GalleryCard";
 import { ScrollPages } from "components/layout/ScrollPages";
-import React, {
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
+import React, { useMemo } from "react";
 
 const githubURL = "https://api.github.com/users/ianeli1/repos";
 
@@ -118,7 +110,13 @@ export const Projects: React.FC<{
   );
 
   return (
-    <Default>
+    <Default
+      seo={{
+        title: "Projects",
+        description:
+          "I enjoy making projects and you can find more about them here!",
+      }}
+    >
       <ScrollPages>{pages}</ScrollPages>
     </Default>
   );

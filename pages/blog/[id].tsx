@@ -31,7 +31,12 @@ interface BlogSiteProps {
 
 export default function BlogSite({ postData }: BlogSiteProps) {
   return (
-    <Default>
+    <Default
+      seo={{
+        title: `${postData?.title ?? "*"} - Blog`,
+        description: `${postData?.desc ?? "No description."}`,
+      }}
+    >
       <OneColumn minWidth="40%">
         {postData ? (
           <BlogViewer article={postData.contentHtml} {...postData} />

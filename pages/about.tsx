@@ -10,7 +10,12 @@ import Styles from "../styles/About.module.css";
 
 export default function About() {
   return (
-    <Default>
+    <Default
+      seo={{
+        title: "About",
+        description: "Information about my career and experience.",
+      }}
+    >
       <Gallery
         right
         background={

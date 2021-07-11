@@ -6,7 +6,12 @@ import React, { useContext } from "react";
 export default function Home() {
   const [{ dark }] = useContext(darkCtx);
   return (
-    <Default>
+    <Default
+      seo={{
+        title: "Home",
+        description: "Welcome to the homepage of my portfolio!",
+      }}
+    >
       <SeeThrough
         background={
           <img
