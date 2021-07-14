@@ -8,3 +8,9 @@ interface GitHubProject {
   language: null | string;
   languages_url: string; //add a button to see all?
 }
+
+interface ContactFormData {
+  name: string;
+  email: string;
+  message: string;
+}
