@@ -1,6 +1,3 @@
-import { useContext } from "react";
-import { darkCtx } from "./context/useDarkTheme";
-
 export interface FieldProps {
   label: string;
   value: string;
