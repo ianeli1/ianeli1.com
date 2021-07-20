@@ -72,11 +72,11 @@ export default function BlogWindow({ show, onClose, id }: BWProps) {
     <Transition in={show} timeout={1000}>
       {(state) => (
         <main
-          className={` fixed z-50 left-0 bg-gray-500 bg-opacity-75 top-0 bottom-0 h-full w-full transition duration-700 ${transitionStyles[state][0]}`}
+          className={`fixed z-50 left-0 bg-gray-500 bg-opacity-75 top-0 bottom-0 h-full w-full transition duration-700 ${transitionStyles[state][0]}`}
           onClick={onHide}
         >
           <section
-            className={`absolute overflow-y-auto top-0 bottom-0 right-0 w-4/5 h-full ${
+            className={`absolute overflow-y-auto top-0 bottom-0 right-0 w-full lg:w-4/5 h-full ${
               dark ? "bg-gray-900" : "bg-gray-50"
             } shadow transform duration-700 ${transitionStyles[state][1]}`}
             onClick={onBubble}
@@ -86,6 +86,11 @@ export default function BlogWindow({ show, onClose, id }: BWProps) {
             ) : (
               "loading"
             )}
+            <img
+              src="/cancel.svg"
+              className={`absolute right-3 top-3 h-10 cursor-pointer`}
+              onClick={onHide}
+            />
           </section>
         </main>
       )}

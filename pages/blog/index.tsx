@@ -6,7 +6,7 @@ import { Line } from "components/Line";
 import { Timeline } from "components/Timeline";
 import { Title } from "components/Title";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { getPosts } from "utils/posts";
 
 export async function getServerSideProps() {
@@ -23,14 +23,14 @@ interface BlogProps {
 
 export default function Blog({ postList }: BlogProps) {
   const [postId, setPostId] = useState<string | undefined>();
-  const { push: routerPush, back } = useRouter();
+  const { push: routerPush, replace } = useRouter();
 
   function onPostClick(id?: string) {
     setPostId(id);
     if (id) {
       routerPush("/blog", `/blog/${id}`);
     } else {
-      back();
+      replace("/blog");
     }
   }
 
