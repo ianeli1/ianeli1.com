@@ -20,15 +20,17 @@ export function TimelineEntry({
     <article
       className={`${
         onClick && "cursor-pointer"
-      } h-24 mt-2 flex w-full justify-between bg-gray-900 bg-opacity-5 rounded p-1`}
+      } min-h-24 max-h-48 mt-2 flex w-full justify-between bg-gray-900 bg-opacity-5 rounded p-1 overflow-hidden`}
       onClick={onClick}
     >
       <img className="h-full w-24 object-cover rounded" src={image} />
-      <div className="flex flex-col flex-1 m-1">
+      <div className="flex flex-col flex-1 m-1 overflow-ellipsis">
         <Title>{title}</Title>
-        <p>{desc}</p>
+        <p className="overflow-ellipsis overflow-hidden whitespace-pre-line">
+          {desc}
+        </p>
       </div>
-      <p className="font-thin">{calcTimePassed(new Date(date))}</p>
+      <p className="font-thin min-w-0">{calcTimePassed(new Date(date))}</p>
     </article>
   );
 }
