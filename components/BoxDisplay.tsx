@@ -28,15 +28,15 @@ export function BoxDisplay({ elements, interval, onClick }: BoxDisplayProps) {
   }, interval ?? 5000);
 
   return (
-    <div className="relative overflow-hidden w-96 h-64">
+    <div className="relative overflow-hidden w-full h-64">
       {elements.map((props, i) => (
         <PhotoBox
           {...props}
-          className="absolute w-96 h-64"
+          className="absolute w-full h-64"
           key={props.id}
           onClick={() => onClick && onClick(props.id)}
           styles={{
-            right: `${24 * (index - i + 1)}rem`,
+            right: `${100 * (index - i + 1)}%`,
             transition: "right 1s",
           }}
         />
