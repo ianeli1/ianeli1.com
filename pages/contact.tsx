@@ -2,6 +2,7 @@ import { Field } from "components/Field";
 import { Default } from "components/layout/default";
 import { Gallery } from "components/layout/Gallery";
 import React, { useState } from "react";
+import { SocialIcon } from "react-social-icons";
 
 export default function Contact() {
   const [name, setName] = useState("");
@@ -38,7 +39,11 @@ export default function Contact() {
           "Let's get to work! Feel free to send me a message and I'll get back to you!",
       }}
     >
-      <Gallery background={""}>
+      <Gallery
+        background={
+          <SocialIcon url="mailto:ianelicha@gmail.com" className="z-10" />
+        }
+      >
         <div className="grid lg:grid-cols-2 grid-cols-1 h-full overflow-y-auto p-2">
           <main className="m-10">
             Let's get to work! Feel free to send me a message and I'll get back
