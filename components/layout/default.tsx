@@ -2,6 +2,7 @@ import { darkCtx } from "components/context/useDarkTheme";
 import { Header } from "components/Header";
 import { useContext } from "react";
 import { NextSeo, NextSeoProps } from "next-seo";
+import { SocialIcon } from "react-social-icons";
 
 export interface DefaultProps {
   children: React.ReactNode;
@@ -14,6 +15,7 @@ export function Default({ children, seo }: DefaultProps) {
     ...seo,
     title: `${seo.title ?? "*"} | Ian`,
   };
+  const iconColor = !dark ? "white" : "black";
 
   return (
     <>
@@ -33,14 +35,18 @@ export function Default({ children, seo }: DefaultProps) {
           }`}
         >
           ian elizondo - 2021
-          <a
-            href="https://github.com/ianeli1/ianeli1.com"
-            target="_blank"
-            className="ml-2"
-          >
-            github
-          </a>
-          <h1>fsajf</h1>
+          <h1>
+            <SocialIcon
+              url="https://www.linkedin.com/in/ianeli1/"
+              bgColor={iconColor}
+              className="m-1"
+            />
+            <SocialIcon
+              url="https://github.com/ianeli1"
+              bgColor={iconColor}
+              className="m-1"
+            />
+          </h1>
         </footer>
       </main>
     </>
