@@ -6,7 +6,7 @@ import { Line } from "components/Line";
 import { Timeline } from "components/Timeline";
 import { Title } from "components/Title";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { getPosts } from "utils/posts";
 
 export async function getServerSideProps() {
