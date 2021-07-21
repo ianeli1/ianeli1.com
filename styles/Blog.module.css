@@ -56,3 +56,8 @@
 .text p {
   margin-bottom: 1rem;
 }
+
+.text a {
+  color: #58a6ff;
+  border-bottom: 1px solid #58a6ff;
+}
