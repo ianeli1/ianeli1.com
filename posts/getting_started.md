@@ -83,7 +83,7 @@ Following the theme of this post, Heroku offers free hosting for small web apps.
 
 Oh, Docker! Docker is a great tool that allows you to run your webapp in pretty much any platform that supports Docker. Its main focus is for developers to forget about the "oh it works on my machine" excuse.
 
-Once you're application is ready to go, dockerize it. If it works on your machine, it'll work on every computer in the world.
+Once your application is ready to go, dockerize it. If it works on your machine, it'll work on every computer in the world.
 
 Be sure to give [Fireship's videos on Docker](https://www.youtube.com/watch?v=Gjnup-PuquQ&list=PL0vfts4VzfNjTHIOupS8u9cxTYtz5RPYU) a go.
 
