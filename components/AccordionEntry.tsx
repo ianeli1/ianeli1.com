@@ -51,7 +51,7 @@ export const AccordionEntry: React.FC<AccordionEntryProps> = ({
           <section
             className={`${
               dark ? "bg-gray-900 text-white" : "bg-white text-black"
-            } p-1 m-1 rounded box-border`}
+            } p-1 m-1 rounded box-border flex`}
           >
             {children}
           </section>

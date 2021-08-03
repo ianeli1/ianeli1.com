@@ -4,6 +4,7 @@ import { Gallery } from "components/layout/Gallery";
 import { GalleryCard } from "components/layout/GalleryCard";
 import { ScrollPages } from "components/layout/ScrollPages";
 import React, { useMemo } from "react";
+import { SocialIcon } from "react-social-icons";
 
 const githubURL = "https://api.github.com/users/ianeli1/repos";
 
@@ -97,11 +98,47 @@ export const Projects: React.FC<{
           desc="You can find all the projects I have uploaded to GitHub below."
         >
           <Accordion
-            entries={GHProjects.map(({ name, description }) => ({
-              title: name,
-              subtitle: description,
-              children: "Hello",
-            }))}
+            entries={GHProjects.map(
+              ({
+                name,
+                description,
+                html_url,
+                language,
+                updated_at,
+                homepage,
+              }) => ({
+                title: name,
+                subtitle: description,
+                children: (
+                  <>
+                    <SocialIcon
+                      url={html_url}
+                      network="github"
+                      target="_blank"
+                    />
+                    {homepage && (
+                      <SocialIcon
+                        className="ml-1"
+                        url={homepage}
+                        network="rss"
+                        bgColor="#24292e"
+                      />
+                    )}
+                    <div className="ml-1">
+                      {language ? (
+                        <>
+                          Language: <b>{language}</b>
+                          <br />
+                        </>
+                      ) : (
+                        ""
+                      )}
+                      Last updated: {updated_at.split("T")[0]}
+                    </div>
+                  </>
+                ),
+              })
+            )}
           />
         </GalleryCard>
       </Gallery>,
