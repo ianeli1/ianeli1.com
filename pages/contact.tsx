@@ -57,9 +57,11 @@ export default function Contact() {
             <Field label="Message" onChange={setMessage} value={message} />
             <button
               onClick={onSubmit}
-              className="bg-black text-white p-1 m-2 rounded font-bold"
+              className={`${
+                done ? "bg-green-600 cursor-default" : "bg-black"
+              } text-white p-1 m-2 rounded font-bold transition`}
             >
-              Submit
+              {done ? "Sent!" : "Submit"}
             </button>
           </main>
         </div>
