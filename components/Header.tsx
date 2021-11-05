@@ -5,6 +5,10 @@ import { useRouter } from "next/router";
 import { useBreakpoints } from "./hooks/useBreakpoints";
 import { FullScreenSelector } from "./FullScreenSelector";
 
+interface IHeaderProps {
+  onHover?: (isHovered: boolean) => void;
+}
+
 const links = [
   {
     text: "Start",
@@ -28,7 +32,7 @@ const links = [
   },
 ];
 
-export function Header() {
+export function Header({ onHover }: IHeaderProps) {
   const [open, setOpen] = useState(false);
 
   const headerRef = useRef<HTMLElement>();
@@ -45,8 +49,12 @@ export function Header() {
 
   const onMouseEnter = useCallback(() => {
     setOpen(true);
-  }, [setOpen]);
-  const onMouseLeave = useCallback(() => setOpen(false), [setOpen]);
+    onHover && onHover(true);
+  }, [setOpen, onHover]);
+  const onMouseLeave = useCallback(() => {
+    setOpen(false);
+    onHover && onHover(false);
+  }, [setOpen, onHover]);
 
   const { isLg } = useBreakpoints();
 
