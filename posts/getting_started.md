@@ -27,7 +27,7 @@ If you're getting started with web development, be sure to take their Responsive
 
 Not only do they offer free virtual courses, their [YouTube channel](https://www.youtube.com/channel/UC8butISFwT-Wl7EV0hUK0BQ) is full of tutorials on every topic you can imagine.
 
-## [You Know JS](https://github.com/getify/You-Dont-Know-JS)
+## [You Don't Know JS](https://github.com/getify/You-Dont-Know-JS)
 
 The title of this e-book is pretty much self-explanatory. JavaScript being the language it is, it's had many changes over time that ended up resulting in many odd behaviors. This book makes sure to explain them all in detail, as well as all other core mechanisms that make up JS.
 
