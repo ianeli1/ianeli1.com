@@ -1,6 +1,6 @@
 import { darkCtx } from "components/context/useDarkTheme";
 import { Header } from "components/Header";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { NextSeo, NextSeoProps } from "next-seo";
 import { SocialIcon } from "react-social-icons";
 
@@ -11,6 +11,8 @@ export interface DefaultProps {
 
 export function Default({ children, seo }: DefaultProps) {
   const [{ dark }] = useContext(darkCtx);
+  const [navBarOpen, setNavBarOpen] = useState(false);
+
   const seoProps: NextSeoProps = {
     ...seo,
     title: `${seo.title ?? "*"} | Ian`,
@@ -25,9 +27,15 @@ export function Default({ children, seo }: DefaultProps) {
           dark && "bg-gray-900 text-white"
         }`}
       >
-        <Header />
+        <Header onHover={setNavBarOpen} />
 
-        <main className="flex-grow pt-16">{children}</main>
+        <main
+          className={`flex-grow pt-16 filter transition ${
+            navBarOpen ? "blur-lg" : ""
+          }`}
+        >
+          {children}
+        </main>
 
         <footer
           className={`h-16 flex items-center p-3 justify-between border-t-2 border-black ${
