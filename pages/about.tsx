@@ -6,6 +6,7 @@ import { Gallery } from "components/layout/Gallery";
 import { ScrollPages } from "components/layout/ScrollPages";
 import { Title } from "components/Title";
 import React, { useContext } from "react";
+import { ListEntries, ListEntry } from "../components/List";
 import Styles from "../styles/About.module.css";
 
 export default function About() {
@@ -68,7 +69,7 @@ export default function About() {
               <Title className="text-6xl">Let's get to work!</Title>
               <div className="m-7 flex-1">
                 <Title className="text-4xl">My skills</Title>
-                <SkillEntries>
+                <ListEntries>
                   {[
                     "HTML5/CSS3",
                     "Javascript/Typescript ES6+",
@@ -81,9 +82,9 @@ export default function About() {
                     "Azure/AWS/GCP",
                     "Python/C++",
                   ].map((x, i) => (
-                    <SkillEntry key={i}>{x}</SkillEntry>
+                    <ListEntry key={i}>{x}</ListEntry>
                   ))}
-                </SkillEntries>
+                </ListEntries>
               </div>
               <Highlight>
                 <p>
@@ -102,27 +103,6 @@ export default function About() {
         </ScrollPages>
       </Gallery>
     </Default>
-  );
-}
-
-const SkillEntry: React.FC<{ children: string }> = ({ children }) => (
-  <h1 className="text-lg m-2">
-    {"➞ "}
-    {children}
-  </h1>
-);
-
-interface SkillEntriesProps {
-  children: React.ReactChild[];
-}
-
-function SkillEntries({ children }: SkillEntriesProps) {
-  return (
-    <div>
-      {children.map((c, i) => (
-        <section key={i}>{c}</section>
-      ))}
-    </div>
   );
 }
 
