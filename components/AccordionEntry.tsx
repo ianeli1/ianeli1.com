@@ -20,8 +20,8 @@ export const AccordionEntry: React.FC<AccordionEntryProps> = ({
   return (
     <div
       className={`${
-        dark ? "bg-white text-black" : "bg-gray-900 text-white"
-      } p-2 m-2 rounded-md`}
+        !dark ? "bg-white text-black" : "bg-gray-900 text-white"
+      } p-2 m-2 rounded-md border shadow`}
     >
       <section
         className="cursor-pointer flex"
@@ -34,7 +34,10 @@ export const AccordionEntry: React.FC<AccordionEntryProps> = ({
         <h1
           className={`m-auto text-5xl mx-4 ${
             open ? "rotate-90" : "rotate-0"
-          } transform-gpu transition-transform`}
+          } transform-gpu transition-transform m-0`}
+          style={{
+            paddingBottom: 4,
+          }}
         >
           {">"}
         </h1>
