@@ -26,7 +26,9 @@ export const FloatingCard: FC<IFloatingCardProps> = ({
         <img className="w-full h-full object-cover" src={image} alt={title} />
       </div>
       <div className=" p-2 pr-6 overflow-hidden flex flex-col">
-        <Title className={`text-5xl font-bold ${classes.test}`}>{title}</Title>
+        <Title className={`text-5xl font-normal ${classes.test}`}>
+          {title}
+        </Title>
         <Line />
         <div className="h-full overflow-auto">{children}</div>
       </div>
