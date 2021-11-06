@@ -1,9 +1,5 @@
 import { Accordion } from "components/Accordion";
 import { Default } from "components/layout/default";
-import { Gallery } from "components/layout/Gallery";
-import { GalleryCard } from "components/layout/GalleryCard";
-import { ScrollPages } from "components/layout/ScrollPages";
-import Link from "next/link";
 import React from "react";
 import { SocialIcon } from "react-social-icons";
 import FakeLink from "../../components/FakeLink";
@@ -88,14 +84,6 @@ const projectData = [
 export const Projects: React.FC<{
   GHProjects: GitHubProject[];
 }> = ({ GHProjects }) => {
-  const pages = (
-    <Gallery background={""} key={2}>
-      <GalleryCard
-        title="And more!"
-        desc="You can find all the projects I have uploaded to GitHub below."
-      ></GalleryCard>
-    </Gallery>
-  );
   return (
     <Default
       seo={{
