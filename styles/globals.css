@@ -13,4 +13,5 @@ a {
 
 * {
   box-sizing: border-box;
+  scrollbar-color: gray transparent;
 }

@@ -1,9 +1,10 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef } from "react";
 import classes from "../styles/DopeBg.module.css";
+import { darkCtx } from "./context/useDarkTheme";
 
 export function DopeBg() {
   const ref = useRef<HTMLDivElement>();
-  const [loaded, setLoaded] = useState(false);
+  const [{ dark }] = useContext(darkCtx);
   useEffect(() => {
     async function doStuff() {
       const PIXI = await import("pixi.js");
@@ -31,7 +32,7 @@ export function DopeBg() {
           antialias: true,
           backgroundAlpha: 0,
         });
-        ref.current.appendChild(app.view);
+        const canvas = ref.current.appendChild(app.view);
         const graphics = new PIXI.Graphics();
 
         graphics.lineStyle({
@@ -47,8 +48,8 @@ export function DopeBg() {
             const points: [number, number][] = [[X, Y]];
             graphics.moveTo(X, Y);
             while (X <= width - 100) {
-              const angle = ((Math.random() * 30 - 15) * Math.PI) / 180; //-15 to 15 deg
-              const length = Math.random() * 30 + 70;
+              const angle = ((Math.random() * 45 - 23) * Math.PI) / 180; //-15 to 15 deg
+              const length = Math.random() * 30 + 50;
               X += Math.cos(angle) * length;
               Y += Math.sin(angle) * length;
               graphics.lineTo(X, Y);
@@ -78,7 +79,7 @@ export function DopeBg() {
 
         app.ticker.maxFPS = 30;
         app.stage.addChild(graphics);
-        setLoaded(true);
+        canvas.classList.add(classes.appear);
       }
     }
     doStuff();
@@ -90,9 +91,7 @@ export function DopeBg() {
       style={{
         height: "calc(100vh - 8rem)",
         transition: "all ease 1000ms",
-        background: !loaded
-          ? "linear-gradient(140deg, rgba(2,30,87,1) 0%, rgba(215,5,111,1) 100%)"
-          : "black",
+        background: dark ? "black" : "#EEE",
       }}
       ref={(r) => r && (ref.current = r)}
     />

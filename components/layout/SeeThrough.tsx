@@ -1,3 +1,5 @@
+import classes from "../../styles/Home.module.css";
+
 interface STProps {
   background: React.ReactNode;
   children: React.ReactNode;
@@ -6,11 +8,15 @@ interface STProps {
 export default function SeeThrough({ background, children }: STProps) {
   return (
     <section
-      className="flex-1 w-full relative overflow-hidden"
+      className={`flex-1 w-full relative overflow-y-auto overflow-x-hidden ${classes.wrapper}`}
       style={{ height: "calc(100vh - 8rem)" }}
     >
-      <div className="absolute w-full h-full">{background}</div>
-      <div className="absolute w-full h-full">{children}</div>
+      <div className={`w-full h-full ${classes.section} ${classes.parallax}`}>
+        {background}
+      </div>
+      <div className={`w-full overflow-y-auto ${classes.section}`}>
+        {children}
+      </div>
     </section>
   );
 }
