@@ -2,6 +2,7 @@ import { darkCtx } from "components/context/useDarkTheme";
 import { Default } from "components/layout/default";
 import SeeThrough from "components/layout/SeeThrough";
 import React, { useContext } from "react";
+import { DopeBg } from "../components/DopeBg";
 
 export default function Home() {
   const [{ dark }] = useContext(darkCtx);
@@ -12,23 +13,9 @@ export default function Home() {
         description: "Welcome to the homepage of my portfolio!",
       }}
     >
-      <SeeThrough
-        background={
-          <img
-            className="h-full p-10 absolute right-0 object-cover rotate-45 transform"
-            src="./signature.svg"
-            style={{
-              filter: !dark
-                ? "invert(0%) sepia(0%) saturate(0%) hue-rotate(21deg) brightness(100%) contrast(103%)"
-                : "invert(100%) sepia(100%) saturate(0%) hue-rotate(96deg) brightness(105%) contrast(104%)",
-              top: "-10%",
-              zIndex: 1,
-            }}
-          />
-        }
-      >
+      <SeeThrough background={<DopeBg />}>
         <div
-          style={{ clipPath: "polygon(0 0, 50% 0, 80% 100%, 0% 100%)" }}
+          style={{ clipPath: "polygon(0 0, 40% 0, 70% 100%, 0% 100%)" }}
           className={`w-full h-full ${
             dark ? "bg-black" : "bg-gray-500"
           }  relative`}
