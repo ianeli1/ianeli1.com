@@ -20,7 +20,7 @@ export function MainIndex() {
         <h1 className="mt-5 font-extrabold text-6xl font-serif ">{"() => "}</h1>
 
         <section
-          className={`m-3 p-5 rounded-xl text-3xl font-mono text-white ${
+          className={`m-3 p-5 text-3xl font-mono text-white ${
             dark ? "bg-gray-500" : "bg-black"
           }`}
         >
@@ -40,11 +40,7 @@ interface EntryProps {
 
 function Entry({ children, dark }: EntryProps) {
   return (
-    <div
-      className={`p-2 ${
-        dark ? "bg-black" : "bg-gray-500"
-      } text-5xl rounded-xl mb-3`}
-    >
+    <div className={`p-2 ${dark ? "bg-black" : "bg-gray-500"} text-5xl mb-3`}>
       {">" + children}
     </div>
   );

@@ -1,13 +1,16 @@
+import { useBlogEntries } from "./hooks/useBlogEntries";
 import { TimelineEntry, TLEntryProps } from "./TimelineEntry";
 
-interface TimelineProps {
-  entries: (TLEntryProps & { id: string })[];
+export interface TimelineProps {
+  entries?: (TLEntryProps & { id: string })[];
   onClick?: (id: string) => void;
 }
 
-export function Timeline({ entries, onClick }: TimelineProps) {
+export function Timeline({ entries: propEntries, onClick }: TimelineProps) {
+  const { entries } = useBlogEntries(propEntries);
+
   return (
-    <main className="flex flex-col w-full overflow-hidden">
+    <main className="flex flex-col w-full overflow-hidden gap-2">
       {entries.map((x) => (
         <TimelineEntry
           key={x.id}

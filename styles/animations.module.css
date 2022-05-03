@@ -1,9 +1,13 @@
-.filter {
+.hueRotate {
   animation: StaticAnim ease-in-out 3s infinite;
 }
 
+.appearSlow {
+  animation: ZoomAppear ease-in-out 1.5s;
+}
+
 .appear {
-  animation: ZoomAppear cubic-bezier(0.455, 0.03, 0.515, 0.955) 1s;
+  animation: Appear ease 1s;
 }
 
 @keyframes ZoomAppear {
@@ -14,6 +18,17 @@
   100% {
     opacity: 1;
     transform: scale(1);
+  }
+}
+
+@keyframes Appear {
+  0% {
+    opacity: 0;
+    transform: translateY(10rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 

@@ -20,7 +20,7 @@ export function TimelineEntry({
     <article
       className={`${
         onClick && "cursor-pointer"
-      } min-h-24 max-h-48 mt-2 flex w-full justify-between bg-gray-900 bg-opacity-5 rounded p-1 overflow-hidden`}
+      } min-h-24 max-h-48 flex w-full justify-between bg-gray-900 bg-opacity-5 rounded p-1 overflow-hidden`}
       onClick={onClick}
     >
       <img className="h-full w-24 object-cover rounded" src={image} />

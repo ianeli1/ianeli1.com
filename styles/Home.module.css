@@ -1,9 +1,9 @@
 .wrapper {
   perspective: 10px;
+  height: 100%;
 }
 
 .parallax {
-  content: " ";
   position: absolute;
   top: 0;
   right: 0;
