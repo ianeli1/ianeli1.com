@@ -6,6 +6,8 @@ import { ImageTimeline } from "../components/ImageTimeline";
 import { MainIndex } from "../components/mainIndex";
 import { Widget } from "../components/Widget";
 
+//this is the only change here
+
 export default function Home() {
   return (
     <Default
